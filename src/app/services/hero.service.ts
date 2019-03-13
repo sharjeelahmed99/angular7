@@ -54,6 +54,17 @@ export class HeroService {
       catchError(this.handleError('Hero deleted',hero))
     );
   }
+  search(term:string): Observable<Hero[]> {
+    if(!term){
+      return of ([]);
+    }
+    return this.http.get<Hero[]>(this.heroesUrl+`/?name=${term}`) .pipe(
+      tap(_=>this.log('Search heroes performed')),
+     catchError(this.handleError('getHeroes', []))
+   );
+   }
+
+
   private log(message: string){
     this.messageService.add(`HeroService: ${message}`);
   }
