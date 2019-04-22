@@ -4,7 +4,6 @@ import { VehicalService } from '../../services/vehical.service';
 import { Make } from '../../modals/make';
 import { Model } from '../../modals/model';
 import { Vehical } from '../../modals/vehical';
-import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-vehical-form',
@@ -12,7 +11,7 @@ import { ToastyService } from 'ng2-toasty';
   styleUrls: ['./vehical-form.component.css']
 })
 export class VehicalFormComponent implements OnInit {
-  constructor(private vehicalService: VehicalService, private toastyService: ToastyService) {}
+  constructor(private vehicalService: VehicalService) {}
   makes: Make[];
   models: Model[];
   features: Feature[];
@@ -41,18 +40,8 @@ export class VehicalFormComponent implements OnInit {
     }
   }
   onSubmit() {
-    this.vehicalService.create(this.vehical).subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        this.toastyService.error({
-          title: 'Error',
-          msg: 'Oops, Something went wrong',
-          showClose: true,
-          timeout: 5000
-        });
-      }
-    );
+    this.vehicalService.create(this.vehical).subscribe(data => {
+      console.log(data);
+    });
   }
 }
