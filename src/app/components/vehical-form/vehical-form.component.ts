@@ -1,9 +1,11 @@
+import { ActivatedRoute } from '@angular/router';
 import { Feature } from './../../modals/feature';
 import { Component, OnInit } from '@angular/core';
 import { VehicalService } from '../../services/vehical.service';
 import { Make } from '../../modals/make';
 import { Model } from '../../modals/model';
 import { Vehical } from '../../modals/vehical';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-vehical-form',
@@ -11,15 +13,22 @@ import { Vehical } from '../../modals/vehical';
   styleUrls: ['./vehical-form.component.css']
 })
 export class VehicalFormComponent implements OnInit {
-  constructor(private vehicalService: VehicalService) {}
   makes: Make[];
   models: Model[];
   features: Feature[];
   vehical: Vehical;
   selectedMake: number;
+  constructor(private vehicalService: VehicalService, private route: ActivatedRoute, private router: Route) {
+    // route.params.subscribe(p => {
+    //   this.vehical.Id = p['id'];
+    // });
+  }
 
   ngOnInit() {
     this.vehical = new Vehical();
+    debugger;
+    // if (this.vehical.Id) {
+    // }
     this.vehicalService.getMakes().subscribe(makes => {
       this.makes = makes;
     });

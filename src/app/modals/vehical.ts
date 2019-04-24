@@ -6,6 +6,7 @@ export class Vehical {
   IsRegistered: string;
   Contact: Contact;
   Features: number[];
+  // Id: number;
 
   constructor() {
     this.Features = [];
