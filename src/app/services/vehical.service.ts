@@ -20,4 +20,16 @@ export class VehicalService {
   create(vehical: Vehical) {
     return this.http.post('/api/vehical', vehical);
   }
+  get(id: number): Observable<Vehical> {
+    return this.http.get<Vehical>(`/api/vehical/${id}`);
+  }
+  update(vehical: Vehical) {
+    return this.http.put(`/api/vehical/${vehical.id}`, vehical);
+  }
+  delete(id: number) {
+    return this.http.delete(`/api/vehical/${id}`);
+  }
+  getAll(): Observable<Vehical[]> {
+    return this.http.get<Vehical[]>('/api/vehical');
+  }
 }

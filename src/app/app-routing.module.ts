@@ -4,6 +4,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { VehicalFormComponent } from './components/vehical-form/vehical-form.component';
+import { VehicalListComponent } from './components/vehical-list/vehical-list.component';
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'vehicals/new', component: VehicalFormComponent },
-  { path: 'vehicals/:id', component: VehicalFormComponent }
+  { path: 'vehicals/:id', component: VehicalFormComponent },
+  { path: 'vehicals', component: VehicalListComponent }
 ];
 
 @NgModule({

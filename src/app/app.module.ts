@@ -15,6 +15,7 @@ import { ToastyModule } from 'ng2-toasty';
 
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { VehicalFormComponent } from './components/vehical-form/vehical-form.component';
+import { VehicalListComponent } from './components/vehical-list/vehical-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { VehicalFormComponent } from './components/vehical-form/vehical-form.com
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
-    VehicalFormComponent
+    VehicalFormComponent,
+    VehicalListComponent
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, ToastyModule.forRoot()],
   providers: [
