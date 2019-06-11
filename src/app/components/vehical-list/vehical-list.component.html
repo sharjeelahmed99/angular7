@@ -5,7 +5,8 @@
 {{ filter | json }}
 <div class="form-group well">
   <label for="makes">Make</label>
-  <select class="form-control" name="make" #make="ngModel" id="makes" (change)="onFilterChange()" [(ngModel)]="filter.make">
+  <select class="form-control" name="make" #make="ngModel" id="makes" (change)="onFilterChange()" [(ngModel)]="filter.makeId">
+    <option></option>
     <option *ngFor="let m of makes" value="{{ m.id }}">{{ m.name }}</option>
   </select>
 </div>

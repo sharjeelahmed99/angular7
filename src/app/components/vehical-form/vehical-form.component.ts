@@ -111,7 +111,13 @@ export class VehicalFormComponent implements OnInit {
       });
     } else {
       this.vehicalService.create(this.vehical).subscribe(data => {
-        console.log(data);
+        this.toastyService.success({
+          title: 'Success',
+          msg: 'Vehicle has been added',
+          showClose: true,
+          timeout: 5000
+        });
+        this.router.navigate(['/vehicals']);
       });
     }
   }
@@ -119,7 +125,7 @@ export class VehicalFormComponent implements OnInit {
   delete() {
     if (confirm('Are you sure to delete vehicle')) {
       this.vehicalService.delete(this.vehical.id).subscribe(data => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/vehicals']);
       });
     }
   }

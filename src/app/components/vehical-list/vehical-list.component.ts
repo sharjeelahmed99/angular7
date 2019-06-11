@@ -10,17 +10,26 @@ import { VehicalService } from '../../services/vehical.service';
 })
 export class VehicalListComponent implements OnInit {
   vehicals: Vehical[];
+  allVehicals: Vehical[];
   filter: any = {};
   makes: Make[];
   constructor(private vehicalService: VehicalService) {}
 
   ngOnInit() {
     this.vehicalService.getAll().subscribe(vehicals => {
-      this.vehicals = vehicals;
+      this.vehicals = this.allVehicals = vehicals;
     });
     this.vehicalService.getMakes().subscribe(makes => {
       this.makes = makes;
     });
   }
-  onFilterChange() {}
+  onFilterChange() {
+    debugger;
+    let vehicles = this.allVehicals;
+    if (this.filter.makeId) {
+      vehicles = vehicles.filter(v => v.make.id == this.filter.makeId);
+    }
+
+    this.vehicals = vehicles;
+  }
 }
