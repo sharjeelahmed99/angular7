@@ -2,6 +2,8 @@ import { Make } from './../../modals/make';
 import { Component, OnInit } from '@angular/core';
 import { Vehical } from '../../modals/vehical';
 import { VehicalService } from '../../services/vehical.service';
+import { Filter } from '../../modals/filter';
+import { Model } from '../../modals/model';
 
 @Component({
   selector: 'app-vehical-list',
@@ -10,26 +12,33 @@ import { VehicalService } from '../../services/vehical.service';
 })
 export class VehicalListComponent implements OnInit {
   vehicals: Vehical[];
-  allVehicals: Vehical[];
-  filter: any = {};
+
+  filter: Filter;
   makes: Make[];
-  constructor(private vehicalService: VehicalService) {}
+  models: Model[];
+  constructor(private vehicalService: VehicalService) {
+    this.filter = new Filter();
+  }
 
   ngOnInit() {
-    this.vehicalService.getAll().subscribe(vehicals => {
-      this.vehicals = this.allVehicals = vehicals;
-    });
+    this.populatingVehicles();
     this.vehicalService.getMakes().subscribe(makes => {
       this.makes = makes;
     });
+    this.vehicalService.getModels().subscribe(models => {
+      this.models = models;
+    });
+  }
+  populatingVehicles() {
+    this.vehicalService.getAll(this.filter).subscribe(vehicals => {
+      this.vehicals = vehicals;
+    });
   }
   onFilterChange() {
-    debugger;
-    let vehicles = this.allVehicals;
-    if (this.filter.makeId) {
-      vehicles = vehicles.filter(v => v.make.id == this.filter.makeId);
-    }
-
-    this.vehicals = vehicles;
+    this.populatingVehicles();
+  }
+  resetFilter() {
+    this.filter = new Filter();
+    this.populatingVehicles();
   }
 }

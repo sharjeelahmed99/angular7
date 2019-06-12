@@ -2,13 +2,23 @@
 <p>
   <a [routerLink]="['/vehicals/new']" class="btn btn-primary">New Vehicle</a>
 </p>
-{{ filter | json }}
-<div class="form-group well">
-  <label for="makes">Make</label>
-  <select class="form-control" name="make" #make="ngModel" id="makes" (change)="onFilterChange()" [(ngModel)]="filter.makeId">
-    <option></option>
-    <option *ngFor="let m of makes" value="{{ m.id }}">{{ m.name }}</option>
-  </select>
+
+<div class="well">
+  <div class="form-group ">
+    <label for="makes">Make</label>
+    <select class="form-control" name="make" #make="ngModel" id="makes" (change)="onFilterChange()" [(ngModel)]="filter.MakeId">
+      <option></option>
+      <option *ngFor="let m of makes" value="{{ m.id }}">{{ m.name }}</option>
+    </select>
+  </div>
+  <div class="form-group ">
+    <label for="models">Model</label>
+    <select class="form-control" name="model" #model="ngModel" id="models" (change)="onFilterChange()" [(ngModel)]="filter.ModelId">
+      <option></option>
+      <option *ngFor="let m of models" value="{{ m.id }}">{{ m.name }}</option>
+    </select>
+  </div>
+  <button class="btn btn-default" (click)="resetFilter()">Reset</button>
 </div>
 
 <table class="table">
