@@ -1,6 +1,7 @@
 import { AppErrorHandler } from './app.error-handler';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -16,7 +17,10 @@ import { ToastyModule } from 'ng2-toasty';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { VehicalFormComponent } from './components/vehical-form/vehical-form.component';
 import { VehicalListComponent } from './components/vehical-list/vehical-list.component';
-
+import { AdminComponent } from './components/admin/admin.component';
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,9 +31,23 @@ import { VehicalListComponent } from './components/vehical-list/vehical-list.com
     DashboardComponent,
     HeroSearchComponent,
     VehicalFormComponent,
-    VehicalListComponent
+    VehicalListComponent,
+    AdminComponent
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, ToastyModule.forRoot()],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ToastyModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: [],
+        blacklistedRoutes: []
+      }
+    })
+  ],
   providers: [
     {
       provide: ErrorHandler,
