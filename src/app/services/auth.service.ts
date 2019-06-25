@@ -87,7 +87,9 @@ export class AuthService {
     });
   }
   public isInRole(role: string) {
-    debugger;
+    if (!this.roles) {
+      return false;
+    }
     return this.roles.indexOf(role) > -1;
   }
   public logout(): void {

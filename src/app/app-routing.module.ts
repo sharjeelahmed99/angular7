@@ -1,3 +1,5 @@
+import { AuthAdminGuardService } from './services/auth-admin-guard.service';
+import { AuthGuardService } from './services/auth-guard.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,10 +14,10 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'detail/:id', component: HeroDetailComponent },
-  { path: 'vehicals/new', component: VehicalFormComponent },
-  { path: 'vehicals/:id', component: VehicalFormComponent },
-  { path: 'vehicals', component: VehicalListComponent },
-  { path: 'admin', component: AdminComponent }
+  { path: 'vehicals/new', component: VehicalFormComponent, canActivate: [AuthGuardService] },
+  { path: 'vehicals/:id', component: VehicalFormComponent, canActivate: [AuthGuardService] },
+  { path: 'vehicals', component: VehicalListComponent, canActivate: [AuthGuardService] },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthAdminGuardService] }
 ];
 
 @NgModule({

@@ -7,13 +7,13 @@ export class AppErrorHandler implements ErrorHandler {
     if (isDevMode()) {
       // specific to only dev env
     }
-    this.ngZone.run(() => {
-      this.toastyService.error({
-        title: 'Error',
-        msg: 'Oops, Something went wrong',
-        showClose: true,
-        timeout: 5000
-      });
-    });
+    // this.ngZone.run(() => {
+    //   this.toastyService.error({
+    //     title: 'Error',
+    //     msg: 'Oops, Something went wrong',
+    //     showClose: true,
+    //     timeout: 5000
+    //   });
+    // });
   }
 }

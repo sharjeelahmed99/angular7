@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Feature } from './../../modals/feature';
 import { Component, OnInit } from '@angular/core';
@@ -23,6 +24,7 @@ export class VehicalFormComponent implements OnInit {
   vehical: Vehical;
   selectedMake: number;
   constructor(
+    private auth: AuthService,
     private vehicalService: VehicalService,
     private route: ActivatedRoute,
     private router: Router,

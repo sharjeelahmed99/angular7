@@ -21,10 +21,15 @@
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/admin']" *ngIf="authService.isInRole('Admin')">Admin</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+          <li
+            class="nav-item"
+            *ngIf="authService.isAuthenticated()"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
             <a class="nav-link text-dark" [routerLink]="['/vehicals']">Vehicles</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li class="nav-item" *ngIf="authService.isAuthenticated()" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/vehicals/new']">New Vehicle</a>
           </li>
 
