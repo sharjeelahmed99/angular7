@@ -10,7 +10,6 @@ export class AuthAdminGuardService extends AuthGuardService {
     super(auth);
   }
   canActivate() {
-    debugger;
     let isAuthenticated = super.canActivate();
     return isAuthenticated ? this.auth.isInRole('Admin') : false;
   }

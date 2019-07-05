@@ -11,8 +11,8 @@ import { VehicalListComponent } from './components/vehical-list/vehical-list.com
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'home', component: DashboardComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'vehicals/new', component: VehicalFormComponent, canActivate: [AuthGuardService] },
   { path: 'vehicals/:id', component: VehicalFormComponent, canActivate: [AuthGuardService] },

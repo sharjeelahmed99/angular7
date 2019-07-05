@@ -1,9 +1,8 @@
-<h2>Vehicles</h2>
 <p>
-  <a [routerLink]="['/vehicals/new']" class="btn btn-primary">New Vehicle</a>
+  <a [routerLink]="['/vehicals/new']" class="btn btn-secondary">New Vehicle</a>
 </p>
 
-<div class="well">
+<div class="card card-body bg-light mb-2">
   <div class="form-group ">
     <label for="makes">Make</label>
     <select class="form-control" name="make" #make="ngModel" id="makes" (change)="onFilterChange()" [(ngModel)]="filter.MakeId">
@@ -18,7 +17,7 @@
       <option *ngFor="let m of models" value="{{ m.id }}">{{ m.name }}</option>
     </select>
   </div>
-  <div><button class="btn btn-info" (click)="resetFilter()">Reset</button></div>
+  <div><button class="btn btn-secondary" (click)="resetFilter()">Reset</button></div>
 </div>
 
 <table class="table">

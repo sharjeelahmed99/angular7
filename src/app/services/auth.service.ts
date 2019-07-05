@@ -47,7 +47,7 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.localLogin(authResult);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/admin']);
       } else if (err) {
         this.router.navigate(['/home']);
         console.log(err);
@@ -81,7 +81,7 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.localLogin(authResult);
       } else if (err) {
-        alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
+        // alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
         this.logout();
       }
     });

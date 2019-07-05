@@ -2,7 +2,7 @@ import { AppErrorHandler } from './app.error-handler';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
-
+import { ChartModule } from 'angular2-chartjs';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { FormsModule } from '@angular/forms';
@@ -39,6 +39,7 @@ export function tokenGetter() {
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    ChartModule,
     ToastyModule.forRoot(),
     JwtModule.forRoot({
       config: {
