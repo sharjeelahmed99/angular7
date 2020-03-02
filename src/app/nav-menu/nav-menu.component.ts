@@ -1,14 +1,14 @@
-import { AuthService } from './../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from "./../services/auth.service";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-nav-menu',
-  templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css']
+  selector: "app-nav-menu",
+  templateUrl: "./nav-menu.component.html",
+  styleUrls: ["./nav-menu.component.css"]
 })
 export class NavMenuComponent implements OnInit {
   isExpanded = false;
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {}
   collapse() {

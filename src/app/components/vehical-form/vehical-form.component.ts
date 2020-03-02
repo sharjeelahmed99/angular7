@@ -1,21 +1,21 @@
-import { AuthService } from './../../services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Feature } from './../../modals/feature';
-import { Component, OnInit } from '@angular/core';
-import { VehicalService } from '../../services/vehical.service';
-import { Make } from '../../modals/make';
-import { Model } from '../../modals/model';
-import { Vehical } from '../../modals/vehical';
-import { Observable } from 'rxjs';
-import 'rxjs/add/observable/forkJoin';
-import * as _ from 'underscore';
-import { ToastyService } from 'ng2-toasty';
-import { timeout } from 'q';
+import { AuthService } from "./../../services/auth.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Feature } from "./../../modals/feature";
+import { Component, OnInit } from "@angular/core";
+import { VehicalService } from "../../services/vehical.service";
+import { Make } from "../../modals/make";
+import { Model } from "../../modals/model";
+import { Vehical } from "../../modals/vehical";
+import { Observable } from "rxjs";
+import "rxjs/add/observable/forkJoin";
+import * as _ from "underscore";
+import { ToastyService } from "ng2-toasty";
+import { timeout } from "q";
 
 @Component({
-  selector: 'app-vehical-form',
-  templateUrl: './vehical-form.component.html',
-  styleUrls: ['./vehical-form.component.css']
+  selector: "app-vehical-form",
+  templateUrl: "./vehical-form.component.html",
+  styleUrls: ["./vehical-form.component.css"]
 })
 export class VehicalFormComponent implements OnInit {
   makes: Make[];
@@ -24,7 +24,7 @@ export class VehicalFormComponent implements OnInit {
   vehical: Vehical;
   selectedMake: number;
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private vehicalService: VehicalService,
     private route: ActivatedRoute,
     private router: Router,
@@ -32,7 +32,7 @@ export class VehicalFormComponent implements OnInit {
   ) {
     this.vehical = new Vehical();
     route.params.subscribe(p => {
-      this.vehical.id = p['id'];
+      this.vehical.id = p["id"];
     });
   }
 
@@ -58,12 +58,12 @@ export class VehicalFormComponent implements OnInit {
         err => {
           if (err.status === 404) {
             this.toastyService.error({
-              title: 'Error',
-              msg: 'Vehicle not found',
+              title: "Error",
+              msg: "Vehicle not found",
               showClose: true,
               timeout: 5000
             });
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(["/dashboard"]);
           }
         }
       );
@@ -78,7 +78,7 @@ export class VehicalFormComponent implements OnInit {
   }
   setVehical(v: Vehical) {
     this.vehical.contact = v.contact;
-    this.vehical.features = _.pluck(v.features, 'id');
+    this.vehical.features = _.pluck(v.features, "id");
     this.vehical.modelId = v.model.id;
     this.vehical.isRegistered = v.isRegistered;
     this.vehical.contact = v.contact;
@@ -105,8 +105,8 @@ export class VehicalFormComponent implements OnInit {
     if (this.vehical.id) {
       this.vehicalService.update(this.vehical).subscribe(data => {
         this.toastyService.success({
-          title: 'Success',
-          msg: 'Vehicle has been updated',
+          title: "Success",
+          msg: "Vehicle has been updated",
           showClose: true,
           timeout: 5000
         });
@@ -114,20 +114,20 @@ export class VehicalFormComponent implements OnInit {
     } else {
       this.vehicalService.create(this.vehical).subscribe(data => {
         this.toastyService.success({
-          title: 'Success',
-          msg: 'Vehicle has been added',
+          title: "Success",
+          msg: "Vehicle has been added",
           showClose: true,
           timeout: 5000
         });
-        this.router.navigate(['/vehicals']);
+        this.router.navigate(["/vehicals"]);
       });
     }
   }
 
   delete() {
-    if (confirm('Are you sure to delete vehicle')) {
+    if (confirm("Are you sure to delete vehicle")) {
       this.vehicalService.delete(this.vehical.id).subscribe(data => {
-        this.router.navigate(['/vehicals']);
+        this.router.navigate(["/vehicals"]);
       });
     }
   }
